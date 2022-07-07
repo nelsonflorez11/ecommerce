@@ -1,11 +1,3 @@
-
-//Esta es la estructura general de como agregar productos al carrito de compras
-//muestra por html los pasillos y los productos del pasillo frutas y verduras
-//porfavor abrir el inspector del navegador para ver la logica por el console 
-//el navegador, a partir de esta entrega se armara le segunda entrega incorporar 
-//eventos, en este desafio se interactua con HTML
-
-
 let produCarrito = []
 let precioTotalCompra = 0
 let productosTotalCompra = 0
@@ -14,7 +6,7 @@ let botonCarrito = document.getElementById("carrito")
 let carritoVaciar = document.getElementById("carritoVaciar")
 
 
-
+//esta funcion se encarga de calcular el numero total de productos agregados y el total del precio
 const calculaTotalesGeneral = () => {
 
     precioTotalCompra = productosBuscador.precio + precioTotalCompra
@@ -28,6 +20,7 @@ const calculaTotalesGeneral = () => {
 
 }
 
+//esta funcion se encarga de inyectar los objetos en el nuevo array
 const calculaTotales = () => {
 
     if (produCarrito.some(el => el.id === productosBuscador.id )){
@@ -58,7 +51,7 @@ for (const verProductos of productosCarrito){
 }
 
 
-//agrega el evento click al boton
+//agrega el evento click al boton de los productos
 const boton = document.querySelectorAll('button')
     boton.forEach(function(item){
         item.addEventListener('click', function(){
@@ -70,6 +63,7 @@ const boton = document.querySelectorAll('button')
 
 })
 
+//muestra los productos en el carrito y la cantidad
 botonCarrito.onclick = () => {
     let productosCarritoIteracion = produCarrito.map(function(element){
         return `    ${element.producto}, Cantidad: ${element.cantidad}`;
@@ -82,6 +76,7 @@ botonCarrito.onclick = () => {
 
 }
 
+//limpia el carrito
 carritoVaciar.onclick = () => {
     produCarrito = []
     precioTotalCompra = 0
