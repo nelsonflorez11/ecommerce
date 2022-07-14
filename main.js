@@ -7,7 +7,7 @@ let botonCarrito = document.getElementById("carrito")
 let carritoVaciar = document.getElementById("carritoVaciar")
 
 
-//esta funcion se encarga de calcular el numero total de productos agregados y el total del precio
+//calculaTotalesGeneral se encarga de calcular el numero total de productos agregados y el total del precio
 const calculaTotalesGeneral = () => {    
 
     precioTotalCompra = productosBuscador.precio + precioTotalCompra
@@ -20,6 +20,7 @@ const calculaTotalesGeneral = () => {
     //total.innerText = precioTotalCompra
 }
 
+//calculaTotalesGeneral se encarga de inyectar los nuevos productos que el usuario selecciona en el nuevo arreglo
 const calculaTotales = () => {
 
     if (produCarrito.some(el => el.id === productosBuscador.id )){
@@ -36,11 +37,12 @@ const calculaTotales = () => {
 
             })
     }
+    //crea sessionStorage con los  productos que el usuario selecciona en el carrito, se limpian si se cierra el navegador
     sessionStorage.setItem('carrito', JSON.stringify(produCarrito)) 
 
 }
 
-
+//crea la pantilla mostrando los productos
 let test = ''
 let contenido = document.getElementById("productos-contenido")
 for (const verProductos of productosCarrito){
@@ -74,8 +76,6 @@ const boton = document.querySelectorAll('button')
 })
 
 //muestra los productos en el carrito y la cantidad
-
-
 carritoS.onclick = () => {
     let probando = ''
     let testdos = document.getElementById("testdos")    
