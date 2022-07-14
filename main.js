@@ -12,15 +12,12 @@ const calculaTotalesGeneral = () => {
 
     precioTotalCompra = productosBuscador.precio + precioTotalCompra
     productosTotalCompra++
-
-    let productos = document.getElementById("productos")
-    //let total = document.getElementById("total")
-
+    let productos = document.getElementById("productos")    
     productos.innerText = productosTotalCompra
-    //total.innerText = precioTotalCompra
+    
 }
 
-//calculaTotalesGeneral se encarga de inyectar los nuevos productos que el usuario selecciona en el nuevo arreglo
+//calculaTotales se encarga de inyectar los nuevos productos que el usuario selecciona en el nuevo arreglo
 const calculaTotales = () => {
 
     if (produCarrito.some(el => el.id === productosBuscador.id )){
@@ -32,8 +29,7 @@ const calculaTotales = () => {
                 cantidad: 1,
                 producto: productosBuscador.producto,
                 gramos: productosBuscador.gramos,
-                precio: productosBuscador.precio,
-                //imagen : productosBuscador.imagen
+                precio: productosBuscador.precio              
 
             })
     }
@@ -75,7 +71,7 @@ const boton = document.querySelectorAll('button')
 
 })
 
-//muestra los productos en el carrito y la cantidad
+//carritoS muestra los productos en el carrito y la cantidad
 carritoS.onclick = () => {
     let probando = ''
     let testdos = document.getElementById("testdos")    
@@ -92,12 +88,10 @@ carritoS.onclick = () => {
     testdos.innerHTML = probando
 }
 
-//limpia el carrito
+//carritoVaciar limpia el carrito
 carritoVaciar.onclick = () => {
     produCarrito = []
     precioTotalCompra = 0
     productosTotalCompra = 0    
-    location.reload()    
-
-
+    location.reload()
 }
