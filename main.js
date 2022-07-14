@@ -32,10 +32,11 @@ const calculaTotales = () => {
                 producto: productosBuscador.producto,
                 gramos: productosBuscador.gramos,
                 precio: productosBuscador.precio,
-                imagen : productosBuscador.imagen
+                //imagen : productosBuscador.imagen
 
             })
-    }  
+    }
+    sessionStorage.setItem('carrito', JSON.stringify(produCarrito)) 
 
 }
 
