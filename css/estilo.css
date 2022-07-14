@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif; }
+
+.principal {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 299px;
+  grid-template-areas: "header header" "banner banner" "contents sidebar " "contents sidebar " "footer sidebar"; }
+  .principal .header {
+    grid-area: header;
+    padding: 30px;
+    background: #f8f9fa; }
+  .principal .table {
+    text-align: justify; }
+  .principal .banner {
+    padding: 10px;
+    background: #eceff0;
+    grid-area: banner;
+    text-align: right; }
+  .principal .contents {
+    padding: 30px;
+    grid-area: contents;
+    font-size: larger;
+    text-align: justify;
+    background: #f8f9fa; }
+  .principal .sidebar {
+    grid-area: sidebar;
+    text-align: justify;
+    padding: 30px;
+    background: #f8f9fa; }
+  .principal .footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px;
+    grid-area: footer; }

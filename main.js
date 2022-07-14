@@ -1,26 +1,25 @@
 let produCarrito = []
 let precioTotalCompra = 0
 let productosTotalCompra = 0
+let productosBuscador = []
 let sidebarComponentes = document.getElementById("sidebar")
 let botonCarrito = document.getElementById("carrito")
 let carritoVaciar = document.getElementById("carritoVaciar")
 
 
 //esta funcion se encarga de calcular el numero total de productos agregados y el total del precio
-const calculaTotalesGeneral = () => {
+const calculaTotalesGeneral = () => {    
 
     precioTotalCompra = productosBuscador.precio + precioTotalCompra
     productosTotalCompra++
 
     let productos = document.getElementById("productos")
-    let total = document.getElementById("total")
+    //let total = document.getElementById("total")
 
     productos.innerText = productosTotalCompra
-    total.innerText = precioTotalCompra
-
+    //total.innerText = precioTotalCompra
 }
 
-//esta funcion se encarga de inyectar los objetos en el nuevo array
 const calculaTotales = () => {
 
     if (produCarrito.some(el => el.id === productosBuscador.id )){
@@ -40,75 +39,64 @@ const calculaTotales = () => {
 
 }
 
-//construye la plantilla para mostrar dinamicamente los objetos del arreglo productosCarrito con su respectivo boton
-for (const verProductos of productosCarrito){
-    let contenido = document.createElement("div")
-    contenido.innerHTML =  `${verProductos.producto}
-                            Precio: ${verProductos.precio}
-                            <button type="button" class="btn btn-success" data-id=${verProductos.id} >Agregar</button>
-                        `
-    document.body.appendChild(contenido)    
-}
 
+let test = ''
+let contenido = document.getElementById("productos-contenido")
+for (const verProductos of productosCarrito){
+    
+    test +=  `
+            <div class="card text-center" style="width: 18rem;">
+            <img src="${verProductos.imagen}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">${verProductos.producto}</h5>
+            <p class="card-text">${verProductos.gramos}.</p>
+            <p class="card-text">Precio: ${verProductos.precio}.</p>            
+            <button type="button" class="btn btn-success" data-id=${verProductos.id} >Agregar</button>
+            </div>
+            </div>
+            
+            `       
+}
+contenido.innerHTML = test
 
 //agrega el evento click al boton de los productos
 const boton = document.querySelectorAll('button')
     boton.forEach(function(item){
-        item.addEventListener('click', function(){
+        item.addEventListener('click', function(){            
             productosBuscador = productosCarrito.find(productosCarrito => productosCarrito.id == item.dataset.id)
-            calculaTotalesGeneral()
-            calculaTotales()
+            calculaTotalesGeneral(productosBuscador)
+            calculaTotales()        
          
     })
+    
 
 })
 
 //muestra los productos en el carrito y la cantidad
-botonCarrito.onclick = () => {
-    let productosCarritoIteracion = produCarrito.map(function(element){
-        return `    ${element.producto}, Cantidad: ${element.cantidad}`;
-    })
-    if (produCarrito != ''){
-        alert("Productos en tu carrito \n\n" + " " + productosCarritoIteracion.join("\n"))
-    }else{
-        alert("El carrito de compras está vacío ")
-    }
 
+
+carritoS.onclick = () => {
+    let probando = ''
+    let testdos = document.getElementById("testdos")    
+    for (const verProdu of produCarrito){
+    
+        probando +=  `
+                    <tr>                    
+                    <td>${verProdu.producto}</td>
+                    <td>${verProdu.cantidad}</td>
+                    <td>${verProdu.precio * verProdu.cantidad}</td>
+                    </tr>                
+                    `       
+    }
+    testdos.innerHTML = probando
 }
 
 //limpia el carrito
 carritoVaciar.onclick = () => {
     produCarrito = []
     precioTotalCompra = 0
-    productosTotalCompra = 0
-    alert("El carrito de compras esta vacio")
+    productosTotalCompra = 0    
     location.reload()    
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-  
-
-
-
-
-
-
-
-
