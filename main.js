@@ -9,10 +9,13 @@ let carritoVaciar = document.getElementById("carritoVaciar")
 
 
 const cargarCarritoLocal = () => {
-
+    
     if (miStorage.getItem("carrito") !== null){
         produCarrito = JSON.parse(miStorage.getItem("carrito"))
     }
+
+    productos.innerText = productosTotalCompra
+    
     if (miStorage.getItem("numeroPedidos") !== null){
         productosTotalCompra = JSON.parse(miStorage.getItem("numeroPedidos"))
         productos.innerText = productosTotalCompra
