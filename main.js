@@ -117,6 +117,7 @@ carritoS.onclick = () => {
 carritoVaciar.onclick = () => {
 
     swal("¿Deseas vaciar el carrito?", {
+        icon: "warning",
         buttons: {
           cancel: "Vaciar",
           catch: {
