@@ -1,7 +1,7 @@
 let produCarrito = []
 let precioTotalCompra = 0
 let productosTotalCompra = 0
-let productosBuscador = " "
+let productosBuscador = []
 let miStorage = window.localStorage;
 let sidebarComponentes = document.getElementById("sidebar")
 let botonCarrito = document.getElementById("carrito")
@@ -58,11 +58,11 @@ const calculaTotales = () => {
 
 //plantilla se encarga de crear la pantilla para mostrar los productos
 const plantilla = () => {
-    let test = ''
+    let productosTodosCarritoPlantilla = ''
     let contenido = document.getElementById("productos-contenido")
     for (const verProductos of productosCarrito){
         
-        test +=  `
+        productosTodosCarritoPlantilla +=  `
                 <div class="card text-center" style="width: 18rem;">
                 <img src="${verProductos.imagen}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -75,7 +75,7 @@ const plantilla = () => {
                 
                 `       
     }
-    contenido.innerHTML = test    
+    contenido.innerHTML = productosTodosCarritoPlantilla    
 
 }
 
@@ -98,11 +98,11 @@ const eventoBoton = () => {
 
 //carritoS muestra los productos en el carrito y la cantidad
 carritoS.onclick = () => {
-    let probando = ''
-    let testdos = document.getElementById("testdos")    
+    let productosCarritoMostrarPlantilla = ''
+    let productosCarritoMostrar = document.getElementById("productosCarritoMostrar")    
     for (const verProdu of produCarrito){
     
-        probando +=  `
+        productosCarritoMostrarPlantilla +=  `
                     <tr>                    
                     <td>${verProdu.producto}</td>
                     <td>${verProdu.cantidad}</td>
@@ -110,16 +110,39 @@ carritoS.onclick = () => {
                     </tr>                
                     `       
     }
-    testdos.innerHTML = probando
+    productosCarritoMostrar.innerHTML = productosCarritoMostrarPlantilla
 }
 
 //carritoVaciar limpia el carrito
 carritoVaciar.onclick = () => {
-    produCarrito = []
-    precioTotalCompra = 0
-    productosTotalCompra = 0
-    localStorage.clear();  
-    location.reload()
+
+    swal("¿Deseas vaciar el carrito?", {
+        buttons: {
+          cancel: "Vaciar",
+          catch: {
+            text: "Cancelar",
+            value: "catch",
+          },
+          
+        },
+      })
+      .then((value) => {
+        switch (value) {      
+          case "catch":            
+            break;
+       
+          default:            
+            produCarrito = []
+            precioTotalCompra = 0
+            productosTotalCompra = 0  
+            localStorage.clear();  
+            location.reload()
+        }
+      });
+
+    
+
+    
 }
 
 // Inicio
