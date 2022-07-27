@@ -69,7 +69,7 @@ const plantilla = () => {
                 <h5 class="card-title">${verProductos.producto}</h5>
                 <p class="card-text">${verProductos.gramos}.</p>
                 <p class="card-text">Precio: ${verProductos.precio}.</p>            
-                <button type="button" class="btn btn-success" data-id=${verProductos.id} >Agregar</button>
+                <button type="button" class="agregar btn btn-success" data-id=${verProductos.id} >Agregar</button>
                 </div>
                 </div>
                 
@@ -82,7 +82,7 @@ const plantilla = () => {
 //agrega el evento click al boton de los productos
 const eventoBoton = () => {
     
-    const boton = document.querySelectorAll('button')
+    const boton = document.querySelectorAll('.agregar')
     boton.forEach(function(item){
         item.addEventListener('click', function(){            
             productosBuscador = productosCarrito.find(productosCarrito => productosCarrito.id == item.dataset.id)
