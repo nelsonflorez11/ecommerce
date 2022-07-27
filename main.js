@@ -107,6 +107,7 @@ carritoS.onclick = () => {
                     <td>${verProdu.producto}</td>
                     <td>${verProdu.cantidad}</td>
                     <td>${verProdu.precio * verProdu.cantidad}</td>
+                    <td><button type="button" class="eliminar btn btn-danger" data-id=${verProdu.id}>${verProdu.id}</button></td>
                     </tr>                
                     `       
     }
