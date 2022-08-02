@@ -119,8 +119,7 @@ carritoS.onclick = () => {
             <tr>                    
             <td>${verProdu.producto}</td>
             <td>${verProdu.cantidad}</td>
-            <td>${verProdu.precio * verProdu.cantidad}</td>
-            <td><button type="button" class="eliminar btn btn-danger" data-test=${verProdu.id}>${verProdu.id}</button></td>
+            <td>${verProdu.precio * verProdu.cantidad}</td>            
             </tr>              
             `           
         }  
@@ -128,25 +127,7 @@ carritoS.onclick = () => {
     }
     productosCarritoMostrar.innerHTML = productosCarritoMostrarPlantilla
 
-    // const boton = document.querySelectorAll('.eliminar')
-    // boton.forEach(function(item){
-    //     item.addEventListener('click', function(){    
-    //         productosBuscadorTest = produCarrito.find(el => el.id == item.dataset.test)
-    //         const index = produCarrito.findIndex( (element) => element.id == item.dataset.test)
-    //         console.log(index)
-
-    //         if (productosBuscadorTest.cantidad > 0 ){
-    //             productosBuscadorTest.cantidad = productosBuscadorTest.cantidad - 1
-    //         }
-
-    //         produCarrito.splice(index, 1, productosBuscadorTest) 
-               
-    //          console.log(produCarrito)
-
-            
-    //     })    
-
-    // })  
+ 
 }
 
 //carritoVaciar limpia el carrito
