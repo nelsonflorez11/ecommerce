@@ -8,7 +8,7 @@ let botonCarrito = document.getElementById("carrito")
 let carritoVaciar = document.getElementById("carritoVaciar")
 
 
-
+//renderJson carga productos desde un JSON con fetch
 const renderJSON = () => {
 
     const componentes = fetch('./js/componentes.json')
