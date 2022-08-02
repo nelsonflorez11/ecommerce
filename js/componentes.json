@@ -1,0 +1,35 @@
+{
+    "productosCarrito": [
+        {
+            "id": 1,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Cebolla Blanca Semi Pelada Económica",
+            "gramos": "500 Gr",
+            "precio": 2000,
+            "imagen": "https://s.cornershopapp.com/product-images/103464.jpg?versionId=Whi7.6lOyco181twb1RCyi0lW9BpHohs",
+            "descripcion": "La Cebolla blanca semilpelada vitamina A, B y C, calcio, magnesio, fósforo, hierro y potasio. Sus principales activos son la alicina y la aliína, componente a los que se les atribuyen varias propiedades medicinales, entre ellas efecto anti inflamatorio y antioxidante."
+        },
+        {
+            "id": 2,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Zanahoria Económica x Bolsa",
+            "gramos": "500 Gr",
+            "precio": 2200,
+            "imagen": "https://st.depositphotos.com/1000141/2653/i/600/depositphotos_26536551-stock-photo-one-young-carrot.jpg",
+            "descripcion": "La zanahoria es una raíz comestible de forma alargada, de color naranja su color se debe a su alto contenido de carotenos (antioxidantes), algunas pueden producir manchas, pero son normales de su siembra."
+        },
+        {
+            "id": 3,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Lulo Económico x bandeja",
+            "gramos": "500 Gr",
+            "precio": 5900,
+            "imagen": "http://cdn.shopify.com/s/files/1/0623/2761/9801/products/lulo-naranjilla-3-kg-lulo-this-fruta-sas-622653.png?v=1652138403",
+            "descripcion": "El lulo su corteza es lisa, de color amarillo intenso, amarillo rojizo o naranja en la madurez; la pulpa es verdosa de sabor agridulce y de numerosas semillas."
+        }
+    ],
+    "version": 1.0
+}

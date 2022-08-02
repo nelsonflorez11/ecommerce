@@ -8,6 +8,20 @@ let botonCarrito = document.getElementById("carrito")
 let carritoVaciar = document.getElementById("carritoVaciar")
 
 
+
+const renderJSON = () => {
+
+    const componentes = fetch('./js/componentes.json')
+    componentes
+    .then((res) => res.json())  
+    .then((res) => {        
+        productosCarrito = res.productosCarrito
+        plantilla(productosCarrito)
+
+    }) 
+    
+} 
+
 const cargarCarritoLocal = () => {
     
     if (miStorage.getItem("carrito") !== null){
@@ -75,13 +89,8 @@ const plantilla = () => {
                 
                 `       
     }
-    contenido.innerHTML = productosTodosCarritoPlantilla    
+    contenido.innerHTML = productosTodosCarritoPlantilla 
 
-}
-
-//agrega el evento click al boton de los productos
-const eventoBoton = () => {
-    
     const boton = document.querySelectorAll('.agregar')
     boton.forEach(function(item){
         item.addEventListener('click', function(){            
@@ -91,9 +100,12 @@ const eventoBoton = () => {
          
         })    
 
-    })   
+    })  
+    
 
 }
+
+
 
 
 //carritoS muestra los productos en el carrito y la cantidad
@@ -110,12 +122,8 @@ carritoS.onclick = () => {
             <td>${verProdu.precio * verProdu.cantidad}</td>
             <td><button type="button" class="eliminar btn btn-danger" data-test=${verProdu.id}>${verProdu.id}</button></td>
             </tr>              
-            `
-             
-
-        }
-        
-    
+            `           
+        }  
      
     }
     productosCarritoMostrar.innerHTML = productosCarritoMostrarPlantilla
@@ -167,14 +175,10 @@ carritoVaciar.onclick = () => {
             localStorage.clear();  
             location.reload()
         }
-      });
-
-    
-
-    
+      });    
 }
 
-// Inicio
+//Inicio
+renderJSON()
 cargarCarritoLocal()
-plantilla()
-eventoBoton()
+
