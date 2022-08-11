@@ -8,6 +8,7 @@ let botonCarrito = document.getElementById("carrito")
 let carritoVaciar = document.getElementById("carritoVaciar")
 
 
+
 const cargarCarritoLocal = () => {
     
     if (miStorage.getItem("carrito") !== null){
@@ -29,7 +30,7 @@ const calculaTotalesGeneral = () => {
 
     precioTotalCompra = productosBuscador.precio + precioTotalCompra
     productosTotalCompra++
-    let productos = document.getElementById("productos")    
+    let productos = document.getElementById("productos")  
     productos.innerText = productosTotalCompra
     localStorage.setItem('numeroPedidos', JSON.stringify(productosTotalCompra)) 
     
@@ -111,6 +112,7 @@ carritoS.onclick = () => {
             <td><button type="button" class="eliminar btn btn-danger" data-test=${verProdu.id}>${verProdu.id}</button></td>
             </tr>              
             `
+            
              
 
         }
@@ -120,25 +122,33 @@ carritoS.onclick = () => {
     }
     productosCarritoMostrar.innerHTML = productosCarritoMostrarPlantilla
 
-    // const boton = document.querySelectorAll('.eliminar')
-    // boton.forEach(function(item){
-    //     item.addEventListener('click', function(){    
-    //         productosBuscadorTest = produCarrito.find(el => el.id == item.dataset.test)
-    //         const index = produCarrito.findIndex( (element) => element.id == item.dataset.test)
-    //         console.log(index)
+    const boton = document.querySelectorAll('.eliminar')
+    boton.forEach(function(item){
+        item.addEventListener('click', function(){    
+            productosBuscadorTest = produCarrito.find(el => el.id == item.dataset.test)
+            const index = produCarrito.findIndex( (element) => element.id == item.dataset.test)           
 
-    //         if (productosBuscadorTest.cantidad > 0 ){
-    //             productosBuscadorTest.cantidad = productosBuscadorTest.cantidad - 1
-    //         }
+            if (productosBuscadorTest.cantidad > 0 & productosTotalCompra > 0 ){
+                productosBuscadorTest.cantidad = productosBuscadorTest.cantidad - 1
+                productosTotalCompra--
+                productos.innerText = productosTotalCompra
+                localStorage.setItem('numeroPedidos', JSON.stringify(productosTotalCompra))
+                    if(productosBuscadorTest.cantidad === 0 & productosTotalCompra === 0 ){
+                        localStorage.clear()
+                        
+                                                     
 
-    //         produCarrito.splice(index, 1, productosBuscadorTest) 
-               
-    //          console.log(produCarrito)
 
+                    } 
+            }
+
+            produCarrito.splice(index, 1, productosBuscadorTest)      
+  
+            localStorage.setItem('carrito', JSON.stringify(produCarrito))
             
-    //     })    
+        })    
 
-    // })  
+    })  
 }
 
 //carritoVaciar limpia el carrito
