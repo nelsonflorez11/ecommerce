@@ -1,0 +1,92 @@
+{
+    "productosCarrito": [
+        {
+            "id": 1,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Cebolla Blanca Semi Pelada Económica",
+            "gramos": "500 Gr",
+            "precio": 2000,
+            "imagen": "https://s.cornershopapp.com/product-images/103464.jpg?versionId=Whi7.6lOyco181twb1RCyi0lW9BpHohs"            
+        },
+        {
+            "id": 2,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Zanahoria Económica x Bolsa",
+            "gramos": "500 Gr",
+            "precio": 2200,
+            "imagen": "https://st.depositphotos.com/1000141/2653/i/600/depositphotos_26536551-stock-photo-one-young-carrot.jpg"            
+        },
+        {
+            "id": 3,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Lulo Económico x bandeja",
+            "gramos": "500 Gr",
+            "precio": 5900,
+            "imagen": "http://cdn.shopify.com/s/files/1/0623/2761/9801/products/lulo-naranjilla-3-kg-lulo-this-fruta-sas-622653.png?v=1652138403"            
+        },
+        {
+            "id": 4,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Mandarina Importada x Malla ",
+            "gramos": "1.5 KG",
+            "precio": 22900,
+            "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6uBUKMkMEKvixISYNW73wHqaloUW9giTho-nz3Z-83H9UJusA0WntKluxGEKD-vKdRJU&usqp=CAU"
+            
+        },
+        {
+            "id": 5,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Uva Red Globe Imp Fresh Garden ",
+            "gramos": "1 Kg",
+            "precio": 23900,
+            "imagen": "https://walmarthn.vtexassets.com/arquivos/ids/243073/Uva-Globo-Roja-Libra-1-72.jpg?v=637926645969170000"
+            
+        },
+        {
+            "id": 6,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Zucchini Verde x Bolsa (2 a 3 Und)",
+            "gramos": "800 Gr",
+            "precio": 5800,
+            "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiJQOJM8fJxQ8SEFkabvULtXuds4uqaG0Hvdy7XHeXMi3a6ZQakj_lOMunIWQLbRX2Ues&usqp=CAU"
+            
+        },
+        {
+            "id": 7,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Banano x Bolsa (2 a 3 Und) ",
+            "gramos": "450 Gr",
+            "precio": 1500,
+            "imagen": "https://walmartcr.vtexassets.com/arquivos/ids/221693/Banano-Kg-7-A-9-Unidades-Por-Kg-Aproximadamente-1-26254.jpg?v=637626935570730000"
+            
+        },
+        {
+            "id": 8,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Lulo Económico x bandeja",
+            "gramos": "500 Gr",
+            "precio": 5900,
+            "imagen": "http://cdn.shopify.com/s/files/1/0623/2761/9801/products/lulo-naranjilla-3-kg-lulo-this-fruta-sas-622653.png?v=1652138403"
+            
+        },
+        {
+            "id": 9,
+            "cantidad": 1,
+            "categoria": "Frutas y Verduras",
+            "producto": "Lulo Económico x bandeja",
+            "gramos": "500 Gr",
+            "precio": 5900,
+            "imagen": "http://cdn.shopify.com/s/files/1/0623/2761/9801/products/lulo-naranjilla-3-kg-lulo-this-fruta-sas-622653.png?v=1652138403"
+           
+        }
+    ],
+    "version": 1.0
+}

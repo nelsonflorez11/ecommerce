@@ -6,8 +6,40 @@ let miStorage = window.localStorage;
 let sidebarComponentes = document.getElementById("sidebar")
 let botonCarrito = document.getElementById("carrito")
 let carritoVaciar = document.getElementById("carritoVaciar")
+let contenido = document.getElementById("productos-contenido")
+let input = document.getElementById("input")
+let form = document.getElementById("form")
 
 
+const buscador = (array, texto) => {
+    testdos = array.filter(el => el.producto.toLowerCase().includes(texto.toLowerCase()))
+    
+    return testdos    
+}
+
+const disparadorRender = () => {   
+        buscador(productosCarrito, input.value )
+        plantilla(testdos)
+
+}
+
+//renderJson carga productos desde un JSON con fetch
+const renderJSON = () => {    
+    const componentes = fetch('./js/componentes.json')
+    componentes
+    .then((res) => res.json())  
+    .then((res) => {
+        productosCarrito = res.productosCarrito        
+        disparadorRender()   
+        input.addEventListener('input', () => {
+        console.log(testdos)               
+        disparadorRender()         
+               
+        })   
+            
+    })    
+} 
+ 
 
 const cargarCarritoLocal = () => {
     
@@ -30,7 +62,7 @@ const calculaTotalesGeneral = () => {
 
     precioTotalCompra = productosBuscador.precio + precioTotalCompra
     productosTotalCompra++
-    let productos = document.getElementById("productos")  
+    let productos = document.getElementById("productos")    
     productos.innerText = productosTotalCompra
     localStorage.setItem('numeroPedidos', JSON.stringify(productosTotalCompra)) 
     
@@ -56,12 +88,12 @@ const calculaTotales = () => {
     localStorage.setItem('carrito', JSON.stringify(produCarrito)) 
 
 }
-
 //plantilla se encarga de crear la pantilla para mostrar los productos
-const plantilla = () => {
+const plantilla = () => {  
+
     let productosTodosCarritoPlantilla = ''
-    let contenido = document.getElementById("productos-contenido")
-    for (const verProductos of productosCarrito){
+
+    for (const verProductos of testdos){
         
         productosTodosCarritoPlantilla +=  `
                 <div class="card text-center" style="width: 18rem;">
@@ -69,36 +101,29 @@ const plantilla = () => {
                 <div class="card-body">
                 <h5 class="card-title">${verProductos.producto}</h5>
                 <p class="card-text">${verProductos.gramos}.</p>
-                <p class="card-text">Precio: ${verProductos.precio}.</p>            
+                <p class="card-text">$ ${verProductos.precio}.</p>            
                 <button type="button" class="agregar btn btn-success" data-id=${verProductos.id} >Agregar</button>
                 </div>
                 </div>
                 
                 `       
     }
-    contenido.innerHTML = productosTodosCarritoPlantilla    
+    contenido.innerHTML = productosTodosCarritoPlantilla 
 
-}
-
-//agrega el evento click al boton de los productos
-const eventoBoton = () => {
-    
     const boton = document.querySelectorAll('.agregar')
     boton.forEach(function(item){
         item.addEventListener('click', function(){            
-            productosBuscador = productosCarrito.find(productosCarrito => productosCarrito.id == item.dataset.id)
+            productosBuscador = productosCarrito.find(el => el.id == item.dataset.id)
             calculaTotalesGeneral()
             calculaTotales()        
-         
         })    
 
-    })   
+    })  
+    
 
 }
 
-
-//carritoS muestra los productos en el carrito y la cantidad
-carritoS.onclick = () => {
+const test = () => {
     let productosCarritoMostrarPlantilla = ''
     let productosCarritoMostrar = document.getElementById("productosCarritoMostrar")    
     for (const verProdu of produCarrito){
@@ -108,36 +133,57 @@ carritoS.onclick = () => {
             <tr>                    
             <td>${verProdu.producto}</td>
             <td>${verProdu.cantidad}</td>
-            <td>${verProdu.precio * verProdu.cantidad}</td>
-            <td><button type="button" class="eliminar btn btn-danger" data-test=${verProdu.id}>${verProdu.id}</button></td>
+            <td>${verProdu.precio * verProdu.cantidad}</td> 
+            <td><button type="button" class="eliminar btn btn-danger" data-test=${verProdu.id}>${verProdu.id}</button></td>        
             </tr>              
-            `
-            
-             
-
-        }
-        
-    
+            `           
+        }  
      
     }
     productosCarritoMostrar.innerHTML = productosCarritoMostrarPlantilla
+    
+
+}
+
+//carritoS muestra los productos en el carrito y la cantidad
+carritoS.onclick = () => {
+    test()   
 
     const boton = document.querySelectorAll('.eliminar')
     boton.forEach(function(item){
         item.addEventListener('click', function(){    
             productosBuscadorTest = produCarrito.find(el => el.id == item.dataset.test)
-            const index = produCarrito.findIndex( (element) => element.id == item.dataset.test)           
+            const index = produCarrito.findIndex( (element) => element.id == item.dataset.test)
+                    
 
             if (productosBuscadorTest.cantidad > 0 & productosTotalCompra > 0 ){
                 productosBuscadorTest.cantidad = productosBuscadorTest.cantidad - 1
                 productosTotalCompra--
                 productos.innerText = productosTotalCompra
                 localStorage.setItem('numeroPedidos', JSON.stringify(productosTotalCompra))
-                    if(productosBuscadorTest.cantidad === 0 & productosTotalCompra === 0 ){
-                        localStorage.clear()
-                        
-                                                     
 
+                //test
+                let productosCarritoMostrarPlantilla = ''
+                let productosCarritoMostrar = document.getElementById("productosCarritoMostrar")    
+                for (const verProdu of produCarrito){
+            
+                    if (verProdu.cantidad > 0 ){
+                        productosCarritoMostrarPlantilla +=  `
+                        <tr>                    
+                        <td>${verProdu.producto}</td>
+                        <td>${verProdu.cantidad}</td>
+                        <td>${verProdu.precio * verProdu.cantidad}</td> 
+                   
+                        </tr>              
+                        `           
+                    }  
+                 
+                }
+                productosCarritoMostrar.innerHTML = productosCarritoMostrarPlantilla               
+                
+                //test
+                    if(productosBuscadorTest.cantidad === 0 & productosTotalCompra === 0 ){
+                        localStorage.clear()             
 
                     } 
             }
@@ -149,6 +195,8 @@ carritoS.onclick = () => {
         })    
 
     })  
+
+ 
 }
 
 //carritoVaciar limpia el carrito
@@ -176,15 +224,14 @@ carritoVaciar.onclick = () => {
             productosTotalCompra = 0  
             localStorage.clear();  
             location.reload()
+            
         }
-      });
-
-    
-
-    
+      });    
 }
 
-// Inicio
+//Inicio
+
+renderJSON()
 cargarCarritoLocal()
-plantilla()
-eventoBoton()
+
+
