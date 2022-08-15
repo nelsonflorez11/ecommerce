@@ -33,7 +33,7 @@
             "categoria": "Frutas y Verduras",
             "producto": "Mandarina Importada x Malla ",
             "gramos": "1.5 KG",
-            "precio": 22900,
+            "precio": 2290,
             "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6uBUKMkMEKvixISYNW73wHqaloUW9giTho-nz3Z-83H9UJusA0WntKluxGEKD-vKdRJU&usqp=CAU"
             
         },
@@ -43,7 +43,7 @@
             "categoria": "Frutas y Verduras",
             "producto": "Uva Red Globe Imp Fresh Garden ",
             "gramos": "1 Kg",
-            "precio": 23900,
+            "precio": 2390,
             "imagen": "https://walmarthn.vtexassets.com/arquivos/ids/243073/Uva-Globo-Roja-Libra-1-72.jpg?v=637926645969170000"
             
         },
@@ -71,20 +71,20 @@
             "id": 8,
             "cantidad": 1,
             "categoria": "Frutas y Verduras",
-            "producto": "Lulo Económico x bandeja",
+            "producto": "Naranja Valencia",
             "gramos": "500 Gr",
-            "precio": 5900,
-            "imagen": "http://cdn.shopify.com/s/files/1/0623/2761/9801/products/lulo-naranjilla-3-kg-lulo-this-fruta-sas-622653.png?v=1652138403"
+            "precio": 1650,
+            "imagen": "https://farmtotablepv.com/wp-content/uploads/2020/05/naranjas-finca-carraixet.png"
             
         },
         {
             "id": 9,
             "cantidad": 1,
             "categoria": "Frutas y Verduras",
-            "producto": "Lulo Económico x bandeja",
+            "producto": "Tomate chonto",
             "gramos": "500 Gr",
-            "precio": 5900,
-            "imagen": "http://cdn.shopify.com/s/files/1/0623/2761/9801/products/lulo-naranjilla-3-kg-lulo-this-fruta-sas-622653.png?v=1652138403"
+            "precio": 2232,
+            "imagen": "https://olimpica.vtexassets.com/arquivos/ids/735557-1200-auto?v=637782320570800000&width=1200&height=auto&aspect=true"
            
         }
     ],

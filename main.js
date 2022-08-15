@@ -101,7 +101,7 @@ const plantilla = () => {
                 <div class="card-body">
                 <h5 class="card-title">${verProductos.producto}</h5>
                 <p class="card-text">${verProductos.gramos}.</p>
-                <p class="card-text">$ ${verProductos.precio}.</p>            
+                <p class="card-text">$ ${verProductos.precio}</p>            
                 <button type="button" class="agregar btn btn-success" data-id=${verProductos.id} >Agregar</button>
                 </div>
                 </div>
@@ -153,8 +153,7 @@ carritoS.onclick = () => {
     boton.forEach(function(item){
         item.addEventListener('click', function(){    
             productosBuscadorTest = produCarrito.find(el => el.id == item.dataset.test)
-            const index = produCarrito.findIndex( (element) => element.id == item.dataset.test)
-                    
+            const index = produCarrito.findIndex( (element) => element.id == item.dataset.test)                    
 
             if (productosBuscadorTest.cantidad > 0 & productosTotalCompra > 0 ){
                 productosBuscadorTest.cantidad = productosBuscadorTest.cantidad - 1
@@ -163,23 +162,7 @@ carritoS.onclick = () => {
                 localStorage.setItem('numeroPedidos', JSON.stringify(productosTotalCompra))
 
                 //test
-                let productosCarritoMostrarPlantilla = ''
-                let productosCarritoMostrar = document.getElementById("productosCarritoMostrar")    
-                for (const verProdu of produCarrito){
-            
-                    if (verProdu.cantidad > 0 ){
-                        productosCarritoMostrarPlantilla +=  `
-                        <tr>                    
-                        <td>${verProdu.producto}</td>
-                        <td>${verProdu.cantidad}</td>
-                        <td>${verProdu.precio * verProdu.cantidad}</td> 
-                   
-                        </tr>              
-                        `           
-                    }  
-                 
-                }
-                productosCarritoMostrar.innerHTML = productosCarritoMostrarPlantilla               
+                test()              
                 
                 //test
                     if(productosBuscadorTest.cantidad === 0 & productosTotalCompra === 0 ){
