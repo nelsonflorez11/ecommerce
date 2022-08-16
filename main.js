@@ -8,18 +8,18 @@ let botonCarrito = document.getElementById("carrito")
 let carritoVaciar = document.getElementById("carritoVaciar")
 let contenido = document.getElementById("productos-contenido")
 let input = document.getElementById("input")
-let form = document.getElementById("form")
 
 
+//buscador se encarga de "buscar" concidencia en el array del JSON de los productos
 const buscador = (array, texto) => {
-    testdos = array.filter(el => el.producto.toLowerCase().includes(texto.toLowerCase()))
-    
-    return testdos    
+    buscadorJson = array.filter(el => el.producto.toLowerCase().includes(texto.toLowerCase()))    
+    return buscadorJson    
 }
 
+//disparadorRender  ejecuta la funcion buscador plantilla y le pasa los parametros necesarios
 const disparadorRender = () => {   
         buscador(productosCarrito, input.value )
-        plantilla(testdos)
+        plantilla(buscadorJson)
 
 }
 
@@ -30,9 +30,10 @@ const renderJSON = () => {
     .then((res) => res.json())  
     .then((res) => {
         productosCarrito = res.productosCarrito        
-        disparadorRender()   
-        input.addEventListener('input', () => {
-        console.log(testdos)               
+        disparadorRender()
+        
+        //este evento esta alerta de lo que se escribe en el input del buscador
+        input.addEventListener('input', () => {                     
         disparadorRender()         
                
         })   
@@ -40,7 +41,7 @@ const renderJSON = () => {
     })    
 } 
  
-
+//cargarCarritoLocal carga data en localStorage del navegador
 const cargarCarritoLocal = () => {
     
     if (miStorage.getItem("carrito") !== null){
@@ -53,7 +54,6 @@ const cargarCarritoLocal = () => {
         productosTotalCompra = JSON.parse(miStorage.getItem("numeroPedidos"))
         productos.innerText = productosTotalCompra
     } 
-
 }
 
 
@@ -93,7 +93,7 @@ const plantilla = () => {
 
     let productosTodosCarritoPlantilla = ''
 
-    for (const verProductos of testdos){
+    for (const verProductos of buscadorJson){
         
         productosTodosCarritoPlantilla +=  `
                 <div class="card text-center" style="width: 18rem;">
@@ -116,14 +116,45 @@ const plantilla = () => {
             productosBuscador = productosCarrito.find(el => el.id == item.dataset.id)
             calculaTotalesGeneral()
             calculaTotales()        
-        })    
-
-    })  
-    
+        }) 
+    })    
 
 }
 
-const test = () => {
+//eliminaProducto elimina los productos del carrito
+const eliminaProducto = () => {
+    const boton = document.querySelectorAll('.eliminar')
+    boton.forEach(function(item){
+        item.addEventListener('click', function(){    
+            productosBuscadorElimina = produCarrito.find(el => el.id == item.dataset.elimina)
+            const index = produCarrito.findIndex( (element) => element.id == item.dataset.elimina)                    
+
+            if (productosBuscadorElimina.cantidad > 0 & productosTotalCompra > 0 ){
+                productosBuscadorElimina.cantidad = productosBuscadorElimina.cantidad - 1
+                productosTotalCompra--
+                productos.innerText = productosTotalCompra
+                localStorage.setItem('numeroPedidos', JSON.stringify(productosTotalCompra))
+                
+                imprimeProductosCarrito() 
+                eliminaProducto()                
+                
+                    if(productosBuscadorElimina.cantidad === 0 & productosTotalCompra === 0 ){
+                        localStorage.clear()
+
+                    } 
+            }
+
+            produCarrito.splice(index, 1, productosBuscadorElimina)      
+  
+            localStorage.setItem('carrito', JSON.stringify(produCarrito))
+            
+        })    
+
+    }) 
+}
+
+//imprimeProductosCarrito imprime los productos en el carrito
+const imprimeProductosCarrito = () => {
     let productosCarritoMostrarPlantilla = ''
     let productosCarritoMostrar = document.getElementById("productosCarritoMostrar")    
     for (const verProdu of produCarrito){
@@ -134,7 +165,7 @@ const test = () => {
             <td>${verProdu.producto}</td>
             <td>${verProdu.cantidad}</td>
             <td>${verProdu.precio * verProdu.cantidad}</td> 
-            <td><button type="button" class="eliminar btn btn-danger" data-test=${verProdu.id}>${verProdu.id}</button></td>        
+            <td><button type="button" class="eliminar btn btn-danger" data-elimina=${verProdu.id}>Eliminar</button></td>        
             </tr>              
             `           
         }  
@@ -145,41 +176,10 @@ const test = () => {
 
 }
 
-//carritoS muestra los productos en el carrito y la cantidad
+//carritoS carga los productos en el carrito y la cantidad, y la funcion que elimina
 carritoS.onclick = () => {
-    test()   
-
-    const boton = document.querySelectorAll('.eliminar')
-    boton.forEach(function(item){
-        item.addEventListener('click', function(){    
-            productosBuscadorTest = produCarrito.find(el => el.id == item.dataset.test)
-            const index = produCarrito.findIndex( (element) => element.id == item.dataset.test)                    
-
-            if (productosBuscadorTest.cantidad > 0 & productosTotalCompra > 0 ){
-                productosBuscadorTest.cantidad = productosBuscadorTest.cantidad - 1
-                productosTotalCompra--
-                productos.innerText = productosTotalCompra
-                localStorage.setItem('numeroPedidos', JSON.stringify(productosTotalCompra))
-
-                //test
-                test()              
-                
-                //test
-                    if(productosBuscadorTest.cantidad === 0 & productosTotalCompra === 0 ){
-                        localStorage.clear()             
-
-                    } 
-            }
-
-            produCarrito.splice(index, 1, productosBuscadorTest)      
-  
-            localStorage.setItem('carrito', JSON.stringify(produCarrito))
-            
-        })    
-
-    })  
-
- 
+    imprimeProductosCarrito()
+    eliminaProducto() 
 }
 
 //carritoVaciar limpia el carrito
@@ -213,7 +213,6 @@ carritoVaciar.onclick = () => {
 }
 
 //Inicio
-
 renderJSON()
 cargarCarritoLocal()
 
