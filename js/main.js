@@ -8,6 +8,13 @@ let botonCarrito = document.getElementById("carrito")
 let carritoVaciar = document.getElementById("carritoVaciar")
 let contenido = document.getElementById("productos-contenido")
 let input = document.getElementById("input")
+let hola = document.getElementById("hola")
+let productos = document.getElementById("productos")
+let contadorSuma = []
+ 
+
+
+
 
 
 //buscador se encarga de "buscar" concidencia en el array del JSON de los productos
@@ -54,22 +61,32 @@ const cargarCarritoLocal = () => {
         productosTotalCompra = JSON.parse(miStorage.getItem("numeroPedidos"))
         productos.innerText = productosTotalCompra
     } 
-}
+}   
 
-
+let productosBuscadorElimina = []
 //calculaTotalesGeneral se encarga de calcular el numero total de productos agregados y el total del precio
-const calculaTotalesGeneral = () => {    
+const calculaTotalesGeneral = (productosBuscadorElimina) => {
 
-    precioTotalCompra = productosBuscador.precio + precioTotalCompra
-    productosTotalCompra++
-    let productos = document.getElementById("productos")    
-    productos.innerText = productosTotalCompra
+    sumall = contadorSuma.map(item => item.id).reduce((prev, curr) => prev + curr, 0)
+    console.log(sumall)
+    hola.innerText = sumall 
+    if (productosBuscadorElimina != ''){
+        holllll = sumall - productosBuscadorElimina.precio
+
+        hola.innerText = holllll 
+        eliminaProducto()
+            
+    }  
+   
+    productosTotalCompra++  
+    productos.innerText = productosTotalCompra  
+      
     localStorage.setItem('numeroPedidos', JSON.stringify(productosTotalCompra)) 
-    
+        
 }
 
 //calculaTotales se encarga de inyectar los nuevos productos que el usuario selecciona en el nuevo arreglo
-const calculaTotales = () => {
+const calculaTotales = () => {    
 
     if (produCarrito.some(el => el.id === productosBuscador.id )){
         const posicion = produCarrito.findIndex(el => el.id === productosBuscador.id)
@@ -84,10 +101,18 @@ const calculaTotales = () => {
 
             })
     }
-    //crea sessionStorage con los  productos que el usuario selecciona en el carrito, se limpian si se cierra el navegador
+
+   
+    contadorSuma.push({
+        id: productosBuscador.precio         
+
+    })    
+
+    //crea localStorage con los  productos que el usuario selecciona en el carrito, se limpian si se cierra el navegador
     localStorage.setItem('carrito', JSON.stringify(produCarrito)) 
 
 }
+
 //plantilla se encarga de crear la pantilla para mostrar los productos
 const plantilla = () => {  
 
@@ -104,39 +129,47 @@ const plantilla = () => {
                 <p class="card-text">$ ${verProductos.precio}</p>            
                 <button type="button" class="agregar btn btn-success" data-id=${verProductos.id} >Agregar</button>
                 </div>
-                </div>
-                
+                </div>                
                 `       
     }
-    contenido.innerHTML = productosTodosCarritoPlantilla 
+    contenido.innerHTML = productosTodosCarritoPlantilla    
+    
 
     const boton = document.querySelectorAll('.agregar')
     boton.forEach(function(item){
         item.addEventListener('click', function(){            
             productosBuscador = productosCarrito.find(el => el.id == item.dataset.id)
-            calculaTotalesGeneral()
-            calculaTotales()        
+
+            calculaTotales()
+            calculaTotalesGeneral(productosBuscadorElimina)
+                    
         }) 
-    })    
+    })     
 
 }
 
+
+
 //eliminaProducto elimina los productos del carrito
 const eliminaProducto = () => {
-    const boton = document.querySelectorAll('.eliminar')
+    const boton = document.querySelectorAll('.eliminar')    
     boton.forEach(function(item){
-        item.addEventListener('click', function(){    
-            productosBuscadorElimina = produCarrito.find(el => el.id == item.dataset.elimina)
+        item.addEventListener('click', function(){          
+            
+            productosBuscadorElimina = produCarrito.find(el => el.id == item.dataset.elimina) 
+    
             const index = produCarrito.findIndex( (element) => element.id == item.dataset.elimina)                    
 
-            if (productosBuscadorElimina.cantidad > 0 & productosTotalCompra > 0 ){
+            if (productosBuscadorElimina.cantidad > 0 & productosTotalCompra > 0){
+                calculaTotalesGeneral(productosBuscadorElimina)
                 productosBuscadorElimina.cantidad = productosBuscadorElimina.cantidad - 1
                 productosTotalCompra--
                 productos.innerText = productosTotalCompra
-                localStorage.setItem('numeroPedidos', JSON.stringify(productosTotalCompra))
+                
+                localStorage.setItem('numeroPedidos', JSON.stringify(productosTotalCompra))           
                 
                 imprimeProductosCarrito() 
-                eliminaProducto()                
+                eliminaProducto()                           
                 
                     if(productosBuscadorElimina.cantidad === 0 & productosTotalCompra === 0 ){
                         localStorage.clear()
@@ -148,9 +181,13 @@ const eliminaProducto = () => {
   
             localStorage.setItem('carrito', JSON.stringify(produCarrito))
             
-        })    
+        }) 
+        
 
     }) 
+
+    
+    
 }
 
 //imprimeProductosCarrito imprime los productos en el carrito
@@ -166,10 +203,10 @@ const imprimeProductosCarrito = () => {
             <td>${verProdu.cantidad}</td>
             <td>${verProdu.precio * verProdu.cantidad}</td> 
             <td><button type="button" class="eliminar btn btn-danger" data-elimina=${verProdu.id}>Eliminar</button></td>        
-            </tr>              
-            `           
-        }  
-     
+            </tr> 
+            `                
+        }   
+
     }
     productosCarritoMostrar.innerHTML = productosCarritoMostrarPlantilla
     
@@ -179,7 +216,8 @@ const imprimeProductosCarrito = () => {
 //carritoS carga los productos en el carrito y la cantidad, y la funcion que elimina
 carritoS.onclick = () => {
     imprimeProductosCarrito()
-    eliminaProducto() 
+    eliminaProducto()
+
 }
 
 //carritoVaciar limpia el carrito
