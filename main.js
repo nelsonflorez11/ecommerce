@@ -6,6 +6,7 @@ let miStorage = window.localStorage;
 let sidebarComponentes = document.getElementById("sidebar")
 let botonCarrito = document.getElementById("carrito")
 let carritoVaciar = document.getElementById("carritoVaciar")
+let continuarCompra = document.getElementById("continuarCompra")
 let contenido = document.getElementById("productos-contenido")
 let input = document.getElementById("input")
 
@@ -172,14 +173,24 @@ const imprimeProductosCarrito = () => {
      
     }
     productosCarritoMostrar.innerHTML = productosCarritoMostrarPlantilla
-    
-
+    reporte =''
+    return reporte
 }
 
 //carritoS carga los productos en el carrito y la cantidad, y la funcion que elimina
 carritoS.onclick = () => {
     imprimeProductosCarrito()
     eliminaProducto() 
+}
+
+continuarCompra.onclick = () => {  
+        swal({
+            title: "Pedido realizado!",
+            text: "Se alistara su pedido!",
+            icon: "success",
+            button: "OK",
+          });  
+
 }
 
 //carritoVaciar limpia el carrito
