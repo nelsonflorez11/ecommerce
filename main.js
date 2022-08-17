@@ -189,7 +189,34 @@ continuarCompra.onclick = () => {
             text: "Se alistara su pedido!",
             icon: "success",
             button: "OK",
-          });  
+          });
+          swal("Pedido realizado!", {
+            icon: "success",
+            buttons: {
+              cancel: "Continuar",
+              catch: {
+                text: "Cancelar",
+                value: "catch",
+              },
+              
+            },
+          })
+          .then((value) => {
+            switch (value) {      
+              case "catch":            
+                break;
+           
+              default:            
+                produCarrito = []
+                precioTotalCompra = 0
+                productosTotalCompra = 0  
+                localStorage.clear();  
+                location.reload()
+                
+            }
+          });
+ 
+        
 
 }
 
