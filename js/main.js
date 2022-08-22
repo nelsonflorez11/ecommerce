@@ -183,7 +183,8 @@ carritoS.onclick = () => {
     eliminaProducto() 
 }
 
-continuarCompra.onclick = () => {  
+continuarCompra.onclick = () => {
+    if (produCarrito != ''){
         swal({
             title: "Pedido realizado!",
             text: "Se alistara su pedido!",
@@ -215,6 +216,9 @@ continuarCompra.onclick = () => {
                 
             }
           });
+
+    }
+
  
         
 
@@ -223,31 +227,36 @@ continuarCompra.onclick = () => {
 //carritoVaciar limpia el carrito
 carritoVaciar.onclick = () => {
 
-    swal("¿Deseas vaciar el carrito?", {
-        icon: "warning",
-        buttons: {
-          cancel: "Vaciar",
-          catch: {
-            text: "Cancelar",
-            value: "catch",
-          },
-          
-        },
-      })
-      .then((value) => {
-        switch (value) {      
-          case "catch":            
-            break;
-       
-          default:            
-            produCarrito = []
-            precioTotalCompra = 0
-            productosTotalCompra = 0  
-            localStorage.clear();  
-            location.reload()
-            
-        }
-      });    
+    if (produCarrito != ''){
+        swal("¿Deseas vaciar el carrito?", {
+            icon: "warning",
+            buttons: {
+              cancel: "Vaciar",
+              catch: {
+                text: "Cancelar",
+                value: "catch",
+              },
+              
+            },
+          })
+          .then((value) => {
+            switch (value) {      
+              case "catch":            
+                break;
+           
+              default:            
+                produCarrito = []
+                precioTotalCompra = 0
+                productosTotalCompra = 0  
+                localStorage.clear();  
+                location.reload()
+                
+            }
+          });
+
+    }
+
+        
 }
 
 //Inicio
