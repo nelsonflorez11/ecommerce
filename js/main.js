@@ -196,7 +196,7 @@ continuarCompra.onclick = () => {
             buttons: {
               cancel: "Continuar",
               catch: {
-                text: "Cancelar",
+                text: "Agregar Productos",
                 value: "catch",
               },
               
