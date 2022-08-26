@@ -184,7 +184,8 @@ carritoS.onclick = () => {
 }
 
 continuarCompra.onclick = () => {
-    if (produCarrito != ''){
+    console.log(productosTotalCompra)
+    if (productosTotalCompra != ''){
         swal({
             title: "Pedido realizado!",
             text: "Se alistara su pedido!",
@@ -227,7 +228,7 @@ continuarCompra.onclick = () => {
 //carritoVaciar limpia el carrito
 carritoVaciar.onclick = () => {
 
-    if (produCarrito != ''){
+    if (productosTotalCompra != ''){
         swal("¿Deseas vaciar el carrito?", {
             icon: "warning",
             buttons: {
