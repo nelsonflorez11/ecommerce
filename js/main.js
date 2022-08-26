@@ -184,8 +184,8 @@ carritoS.onclick = () => {
 }
 
 continuarCompra.onclick = () => {
-    console.log(productosTotalCompra)
-    if (productosTotalCompra != ''){
+    
+    if (productosTotalCompra != 0){
         swal({
             title: "Pedido realizado!",
             text: "Se alistara su pedido!",
@@ -216,7 +216,7 @@ continuarCompra.onclick = () => {
                 location.reload()
                 
             }
-          });
+          })
 
     }
 
@@ -228,7 +228,7 @@ continuarCompra.onclick = () => {
 //carritoVaciar limpia el carrito
 carritoVaciar.onclick = () => {
 
-    if (productosTotalCompra != ''){
+    if (productosTotalCompra != 0){
         swal("¿Deseas vaciar el carrito?", {
             icon: "warning",
             buttons: {
@@ -253,7 +253,7 @@ carritoVaciar.onclick = () => {
                 location.reload()
                 
             }
-          });
+          })
 
     }
 
